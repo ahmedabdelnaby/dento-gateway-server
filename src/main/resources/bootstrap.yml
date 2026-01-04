@@ -5,11 +5,12 @@ spring:
 # read your configs from config server on this info
   cloud:
     config:
-      uri: http://localhost:8888
-      fail-fast: true
+      import: configserver:http://localhost:8888
+#      uri: http://localhost:8888
+#      fail-fast: true
 
 # register yourself to the discovery server on this info
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
