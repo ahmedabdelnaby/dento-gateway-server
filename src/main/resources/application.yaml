@@ -1,8 +1,21 @@
 #server:
 #  port: 8080
 
-spring:
-  application:
-    name: api-gateway
+#spring:
+#  application:
+#    name: api-gateway
 #  config:
 #    import: optional:config-server:http://localhost:8888/
+
+spring:
+  # read your configs from config server on this info
+  cloud:
+    config:
+      import: configserver:http://localhost:8888
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true # allow dynamic routing
+              lower-case-service-id: true
