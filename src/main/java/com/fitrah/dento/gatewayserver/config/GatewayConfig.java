@@ -1,5 +1,6 @@
 package com.fitrah.dento.gatewayserver.config;
 
+import com.fitrah.dento.security.util.JwtUtil;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -37,4 +38,7 @@ public class GatewayConfig {
                 .uri("lb://REPORTING-SERVICE"))
             .build();
     }
+
+    @Bean
+    public JwtUtil jwtUtil() { return new JwtUtil(); }
 }
