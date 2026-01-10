@@ -17,8 +17,6 @@ public class SecurityConfig {
         log.info("inside securityWebFilterChain");
         return http
             .csrf(ServerHttpSecurity.CsrfSpec::disable)
-            .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
-            .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
             .authorizeExchange(exchange -> exchange
                 .pathMatchers("/auth/**").permitAll()
                 .anyExchange().authenticated()

@@ -19,3 +19,5 @@ spring:
             locator:
               enabled: true # allow dynamic routing
               lower-case-service-id: true
+jwt:
+  secret: my-super-secure-secret-key-which-is-at-least-32-chars

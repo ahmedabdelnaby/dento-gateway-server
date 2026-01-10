@@ -60,7 +60,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.fitrah.dento</groupId>
-			<artifactId>dento-security</artifactId>
+			<artifactId>dento-security-util</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>

@@ -1,6 +1,6 @@
 package com.fitrah.dento.gatewayserver.filter;
 
-import com.fitrah.dento.security.util.JwtUtil;
+import com.fitrah.dento.dento_security_util.util.JwtUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -21,9 +21,10 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.info("inside filter");
+        log.info("inside JwtAuthenticationFilter.filter");
         var path = exchange.getRequest().getURI().getPath();
 
+        // do NOT require a JWT to access the authentication service
         if (path.startsWith("/auth")) {
             return chain.filter(exchange);
         }
@@ -38,7 +39,7 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 
         var token = authHeader.substring(7); // to exclude 'Bearer' word from the token
         try {
-            jwtUtil.validateToken(token);
+            jwtUtil.extractUsername(token);
         } catch (Exception _) {
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
